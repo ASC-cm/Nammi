@@ -1,1 +1,1 @@
-Html Template for The Nammi Project
+Html,css and Javascript Template for The Nammi Project
