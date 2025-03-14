@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect Wallet - Nammi</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/wallet.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="wallet-screen">
+            <div class="background-illustration"></div>
+            
+            <div class="wallet-modal">
+                <div class="wallet-modal-header">
+                    <h2>Connect a wallet</h2>
+                    <button class="close-btn">&times;</button>
+                </div>
+                
+                <div class="wallet-options">
+                    <button class="wallet-option">
+                        <img src="images/metamask-icon.svg" alt="MetaMask" class="wallet-icon">
+                        <span>MetaMask</span>
+                        <span class="chevron">›</span>
+                    </button>
+                    
+                    <button class="wallet-option">
+                        <img src="images/coinbase-icon.svg" alt="CoinBase Wallet" class="wallet-icon">
+                        <span>CoinBase Wallet</span>
+                        <span class="chevron">›</span>
+                    </button>
+                    
+                    <button class="wallet-option">
+                        <img src="images/walletconnect-icon.svg" alt="WalletConnect" class="wallet-icon">
+                        <span>WalletConnect</span>
+                        <span class="chevron">›</span>
+                    </button>
+                    
+                    <button class="wallet-option">
+                        <img src="images/keplr-icon.svg" alt="Keplr" class="wallet-icon">
+                        <span>Keplr</span>
+                        <span class="chevron">›</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="wallet-footer">
+                <h3>Connect a wallet</h3>
+                <p>By using Nnammi, you agree to accept our<br>
+                <a href="#" class="terms-link">Terms of Use</a> and <a href="#" class="privacy-link">Privacy Policy</a></p>
+            </div>
+            
+            <div class="bottom-action">
+                <button class="lets-go-btn">Let's Go</button>
+            </div>
+        </div>
+    </div>
+    <script src="js/main.js"></script>
+    <script>
+        document.querySelector('.close-btn').addEventListener('click', () => {
+            window.location.href = 'welcome.html';
+        });
+        
+        const walletOptions = document.querySelectorAll('.wallet-option');
+        walletOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                window.location.href = 'registration-complete.html';
+            });
+        });
+        
+        document.querySelector('.lets-go-btn').addEventListener('click', () => {
+            window.location.href = 'registration-complete.html';
+        });
+    </script>
+</body>
+</html>

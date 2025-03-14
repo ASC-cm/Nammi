@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Role - Nammi</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/select-role.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="role-screen">
+            <div class="background-illustration"></div>
+            <div class="role-content">
+                <h1>Select your role<br>to get started</h1>
+                
+                <div class="role-carousel">
+                    <div class="role-card verifier left-card">
+                        <h2>Verifier</h2>
+                        <p>Users who verify tasks</p>
+                        <button class="continue-btn">Continue</button>
+                    </div>
+                    
+                    <div class="role-card task-creator active-card">
+                        <h2>Task Creator</h2>
+                        <p>Users who post tasks and<br>fund bounties</p>
+                        <button class="continue-btn">Continue</button>
+                    </div>
+                    
+                    <div class="role-card volunteer right-card">
+                        <h2>Volunteer</h2>
+                        <p>Users who complete tasks</p>
+                        <button class="continue-btn">Continue</button>
+                    </div>
+                </div>
+                
+                <div class="pagination-dots">
+                    <span class="dot"></span>
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/main.js"></script>
+    <script>
+        const continueButtons = document.querySelectorAll('.continue-btn');
+        continueButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                window.location.href = 'registration-complete.html';
+            });
+        });
+        
+        // Role carousel functionality
+        const roleCards = document.querySelectorAll('.role-card');
+        const dots = document.querySelectorAll('.dot');
+        let currentIndex = 1; // Start with Task Creator (middle card)
+        
+        function updateCarousel() {
+            roleCards.forEach(card => {
+                card.classList.remove('active-card', 'left-card', 'right-card');
+            });
+            
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+            
+            if (currentIndex === 0) {
+                roleCards[0].classList.add('active-card');
+                roleCards[1].classList.add('right-card');
+                roleCards[2].classList.add('right-card');
+            } else if (currentIndex === 1) {
+                roleCards[0].classList.add('left-card');
+                roleCards[1].classList.add('active-card');
+                roleCards[2].classList.add('right-card');
+            } else {
+                roleCards[0].classList.add('left-card');
+                roleCards[1].classList.add('left-card');
+                roleCards[2].classList.add('active-card');
+            }
+        }
+        
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentIndex = index;
+                updateCarousel();
+            });
+        });
+        
+        // For desktop view, make cards clickable to become active
+        if (window.innerWidth >= 1024) {
+            roleCards.forEach((card, index) => {
+                card.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateCarousel();
+                });
+            });
+        }
+    </script>
+</body>
+</html>

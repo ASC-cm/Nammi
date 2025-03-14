@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Complete - Nammi</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/registration-complete.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="complete-screen">
+            <div class="success-circle">
+                <div class="checkmark-circle">
+                    <div class="checkmark"></div>
+                </div>
+            </div>
+            
+            <div class="complete-message">
+                <h1>Registration Complete!</h1>
+                <h2>Welcome to Nammi</h2>
+            </div>
+            
+            <div class="redirect-message">
+                <p>You will be automatically redirected to<br>dashboard based on your selected role.</p>
+            </div>
+        </div>
+    </div>
+    <script src="js/main.js"></script>
+    <script>
+        // Automatically redirect after showing success message
+        setTimeout(() => {
+            // In a real app, this would go to the dashboard
+            window.location.href = 'index.html';
+        }, 3000);
+    </script>
+</body>
+</html>

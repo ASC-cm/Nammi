@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Nammi</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/welcome.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="welcome-screen">
+            <div class="background-illustration"></div>
+            <div class="welcome-content">
+                <h1>Volunteer. Get Paid.<br>Stay on Pulse.</h1>
+                <p>Create a brand new account or add<br>an existing one to get started easily</p>
+                
+                <div class="action-buttons">
+                    <button class="create-account-btn">Create an account</button>
+                    <button class="login-btn">Log In</button>
+                </div>
+                
+                <div class="divider">
+                    <span>OR</span>
+                </div>
+                
+                <button class="wallet-btn">Connect a wallet</button>
+                
+                <div class="terms">
+                    <p>By using Nnammi, you agree to accept our<br>
+                    <a href="#" class="terms-link">Terms of Use</a> and <a href="#" class="privacy-link">Privacy Policy</a></p>
+                </div>
+            </div>
+            
+            <div class="bottom-action">
+                <button class="lets-go-btn">Let's Go</button>
+            </div>
+        </div>
+    </div>
+    <script src="js/main.js"></script>
+    <script>
+        document.querySelector('.create-account-btn').addEventListener('click', () => {
+            window.location.href = 'create-account.html';
+        });
+        
+        document.querySelector('.login-btn').addEventListener('click', () => {
+            window.location.href = 'login.html';
+        });
+        
+        document.querySelector('.wallet-btn').addEventListener('click', () => {
+            window.location.href = 'connect-wallet.html';
+        });
+        
+        document.querySelector('.lets-go-btn').addEventListener('click', () => {
+            window.location.href = 'create-account.html';
+        });
+    </script>
+</body>
+</html>
