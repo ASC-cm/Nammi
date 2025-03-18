@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Dash Board - Nammi</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #333333;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .wallet-address {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .wallet-icon {
+            width: 24px;
+            height: 24px;
+            background-color: #ff7e5f;
+            background-image: linear-gradient(to right, #ff7e5f, #feb47b);
+            border-radius: 50%;
+        }
+
+        /* Navigation Bar */
+        .nav-bar {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 12px 20px;
+            margin-bottom: 40px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-right: 20px;
+        }
+
+        .logo {
+            width: 32px;
+            height: 32px;
+            background-color: #00a2ff;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .logo-text {
+            font-weight: 600;
+            color: #00a2ff;
+            text-transform: uppercase;
+        }
+
+        .search-bar {
+            flex: 1;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 10px 10px 10px 40px;
+            border: none;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            margin-left: 20px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #666;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 5px 10px;
+        }
+
+        .nav-link.active {
+            color: #00a2ff;
+        }
+
+        /* Card Styles */
+        .card {
+            background-color: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .card-subtitle {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Bounty Status */
+        .bounty-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .status-label {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .status-value {
+            background-color: #f5f5f5;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        @media (min-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* Progress Bars */
+        .progress-item {
+            margin-bottom: 16px;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .progress-label {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .progress-value {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+        }
+
+        .progress-fill.purple {
+            background-color: #a855f7;
+        }
+
+        .progress-fill.green {
+            background-color: #22c55e;
+        }
+
+        .progress-fill.blue {
+            background-color: #3b82f6;
+        }
+
+        /* People */
+        .people-container {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 12px;
+            margin-right: -8px;
+            border: 2px solid white;
+        }
+
+        .avatar:nth-child(1) {
+            background-color: #fbbf24;
+            color: white;
+        }
+
+        .avatar:nth-child(2) {
+            background-color: #ec4899;
+            color: white;
+        }
+
+        .avatar:nth-child(3) {
+            background-color: #3b82f6;
+            color: white;
+        }
+
+        .more-people {
+            margin-left: 16px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Weekly Progress */
+        .weekly-progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .date-range {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .progress-circle-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 0;
+        }
+
+        .progress-circle {
+            position: relative;
+            width: 160px;
+            height: 160px;
+        }
+
+        .progress-circle svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .progress-circle-bg {
+            fill: none;
+            stroke: #f0f0f0;
+            stroke-width: 12;
+        }
+
+        .progress-circle-fill {
+            fill: none;
+            stroke: #22c55e;
+            stroke-width: 12;
+            stroke-linecap: round;
+            transform: rotate(-90deg);
+            transform-origin: center;
+            transition: stroke-dasharray 0.5s ease;
+        }
+
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .progress-percentage {
+            font-size: 32px;
+            font-weight: 700;
+            color: #333;
+            line-height: 1;
+        }
+
+        .progress-label {
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* More Options Button */
+        .more-options {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+        }
+
+        .more-options:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .header h1 {
+                font-size: 20px;
+            }
+            
+            .card {
+                padding: 16px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                padding: 40px;
+            }
+            
+            .header h1 {
+                font-size: 28px;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Task Dash Board</h1>
+            <div class="wallet-address">
+                <div class="wallet-icon"></div>
+                <span>0x051cd5...5c4a5wa12</span>
+            </div>
+        </header>
+
+        <nav class="nav-bar">
+            <div class="logo-container">
+                <div class="logo">T</div>
+                <span class="logo-text">TASK</span>
+            </div>
+            <div class="search-bar">
+                <span class="search-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </span>
+                <input type="text" placeholder="Search everything">
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link active">Projects</a>
+                <a href="#" class="nav-link">Settings</a>
+                <a href="#" class="nav-link">Help</a>
+            </div>
+        </nav>
+
+        <div class="bounty-status">
+            <span class="status-label">Bounty Status:</span>
+            <span class="status-value">Locked in Smart Contract</span>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Task Progress</h2>
+                </div>
+
+                <div class="progress-item">
+                    <div class="progress-header">
+                        <span class="progress-label">Copywriting</span>
+                        <span class="progress-value">3/8</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill purple" style="width: 37.5%;"></div>
+                    </div>
+                </div>
+
+                <div class="progress-item">
+                    <div class="progress-header">
+                        <span class="progress-label">Illustrations</span>
+                        <span class="progress-value">6/10</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill green" style="width: 60%;"></div>
+                    </div>
+                </div>
+
+                <div class="progress-item">
+                    <div class="progress-header">
+                        <span class="progress-label">UI Design</span>
+                        <span class="progress-value">2/7</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill blue" style="width: 28.6%;"></div>
+                    </div>
+                </div>
+
+                <div class="people-container">
+                    <div class="avatar">A</div>
+                    <div class="avatar">B</div>
+                    <div class="avatar">C</div>
+                    <span class="more-people">+ 15 people</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Task Executors and Verifiers</h2>
+                    <button class="more-options">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="1"></circle>
+                            <circle cx="12" cy="5" r="1"></circle>
+                            <circle cx="12" cy="19" r="1"></circle>
+                        </svg>
+                    </button>
+                </div>
+                <!-- Content for executors and verifiers would go here -->
+            </div>
+
+            <div class="card">
+                <div class="weekly-progress-header">
+                    <h2 class="card-title">Weekly Progress</h2>
+                    <button class="more-options">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="1"></circle>
+                            <circle cx="12" cy="5" r="1"></circle>
+                            <circle cx="12" cy="19" r="1"></circle>
+                        </svg>
+                    </button>
+                </div>
+                <div class="date-range">Start from Nov 7-14, 2020</div>
+
+                <div class="progress-circle-container">
+                    <div class="progress-circle">
+                        <svg viewBox="0 0 100 100">
+                            <circle class="progress-circle-bg" cx="50" cy="50" r="40"></circle>
+                            <circle class="progress-circle-fill" cx="50" cy="50" r="40" stroke-dasharray="188.5 251.3"></circle>
+                        </svg>
+                        <div class="progress-text">
+                            <div class="progress-percentage">75%</div>
+                            <div class="progress-label">Tasks Completed</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set up progress circle
+            const progressCircle = document.querySelector('.progress-circle-fill');
+            const percentage = 75; // 75% completion
+            const radius = 40;
+            const circumference = 2 * Math.PI * radius;
+            
+            // Calculate the dash array based on percentage
+            const dashArray = (percentage / 100) * circumference;
+            progressCircle.style.strokeDasharray = `${dashArray} ${circumference}`;
+            
+            // Add event listeners for interactive elements
+            const moreOptionsButtons = document.querySelectorAll('.more-options');
+            moreOptionsButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    alert('Options menu would open here');
+                });
+            });
+            
+            // Make search bar functional
+            const searchInput = document.querySelector('.search-bar input');
+            searchInput.addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') {
+                    alert(`Searching for: ${this.value}`);
+                }
+            });
+            
+            // Make nav links interactive
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Created Successfully - Nammi</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #333333;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Styles */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .wallet-address {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .wallet-icon {
+            width: 24px;
+            height: 24px;
+            background-color: #ff7e5f;
+            background-image: linear-gradient(to right, #ff7e5f, #feb47b);
+            border-radius: 50%;
+        }
+
+        /* Success Card */
+        .success-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            text-align: center;
+        }
+
+        .success-card {
+            background-color: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .success-card::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background-color: #f5f7fa;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .success-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #006666;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+        }
+
+        .success-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .task-info {
+            background-color: #f5f7fa;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .task-info p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .eth-amount {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .transaction-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .transaction-label {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .transaction-value {
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .copy-icon {
+            cursor: pointer;
+            color: #999;
+        }
+
+        .copy-icon:hover {
+            color: #333;
+        }
+
+        .back-button {
+            background-color: #f5f7fa;
+            color: #333;
+            border: none;
+            border-radius: 30px;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+
+        .back-button:hover {
+            background-color: #e5e7ea;
+        }
+
+        /* Navigation Text */
+        .navigation-text {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 16px;
+            color: #666;
+        }
+
+        .dashboard-link {
+            color: #006666;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .dashboard-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 20px;
+            }
+            
+            .success-card {
+                padding: 20px;
+            }
+            
+            .success-title {
+                font-size: 20px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                padding: 40px;
+            }
+            
+            .header h1 {
+                font-size: 28px;
+            }
+            
+            .success-card {
+                padding: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Congratulations, your task has been created successfully!</h1>
+            <div class="wallet-address">
+                <div class="wallet-icon"></div>
+                <span>0x051cd5...5c4a5wa12</span>
+            </div>
+        </header>
+
+        <div class="success-container">
+            <div class="success-card">
+                <div class="success-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
+                <h2 class="success-title">Success</h2>
+                
+                <div class="task-info">
+                    <p>You just secured a task with <span class="eth-amount">0.97491 ETH</span></p>
+                </div>
+                
+                <div class="transaction-row">
+                    <span class="transaction-label">Transaction ID</span>
+                    <div class="transaction-value">
+                        <span>0xF23g...9h3</span>
+                        <span class="copy-icon" title="Copy to clipboard">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+                
+                <button class="back-button">Go back</button>
+            </div>
+            
+            <div class="navigation-text">
+                Navigate to the <a href="task-dashboard.html" class="dashboard-link">task Dashboard</a>, where you can track the task's status.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Copy transaction ID functionality
+            const copyIcon = document.querySelector('.copy-icon');
+            copyIcon.addEventListener('click', function() {
+                const txId = "0xF23g...9h3"; // In a real app, this would be the full transaction ID
+                navigator.clipboard.writeText(txId)
+                    .then(() => {
+                        alert('Transaction ID copied to clipboard');
+                    })
+                    .catch(err => {
+                        console.error('Could not copy text: ', err);
+                    });
+            });
+            
+            // Back button functionality
+            const backButton = document.querySelector('.back-button');
+            backButton.addEventListener('click', function() {
+                window.location.href = 'task-dashboard.html';
+            });
+            
+            // Dashboard link functionality
+            const dashboardLink = document.querySelector('.dashboard-link');
+            dashboardLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = 'task-dashboard.html';
+            });
+        });
+    </script>
+</body>
+</html>

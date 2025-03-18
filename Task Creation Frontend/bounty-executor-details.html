@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bounty and Executor Details - Nammi</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #333333;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Styles */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .wallet-address {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .wallet-icon {
+            width: 24px;
+            height: 24px;
+            background-color: #ff7e5f;
+            background-image: linear-gradient(to right, #ff7e5f, #feb47b);
+            border-radius: 50%;
+        }
+
+        /* Logo Background */
+        .logo-background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        /* Form Container */
+        .form-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 20px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                padding: 40px;
+            }
+            
+            .header h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Bounty and Executor Details</h1>
+            <div class="wallet-address">
+                <div class="wallet-icon"></div>
+                <span>0x051cd5...5c4a5wa12</span>
+            </div>
+        </header>
+
+        <div class="form-container">
+            <!-- Nammi logo background -->
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Create%20New%20Task-N9ZTPXiK7MteCUisOUROyM79VHBRCD.png" alt="Nammi Logo" class="logo-background">
+            
+            <!-- Form content would go here in a real implementation -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // This page is shown as a placeholder in the mockup
+            // In a real implementation, this would contain form fields for bounty and executor details
+            
+            // For demo purposes, let's add a timeout to simulate navigation
+            setTimeout(() => {
+                window.location.href = 'create-new-task.html';
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

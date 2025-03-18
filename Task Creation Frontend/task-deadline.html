@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Deadline - Nammi</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #333333;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Styles */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .wallet-address {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .wallet-icon {
+            width: 24px;
+            height: 24px;
+            background-color: #ff7e5f;
+            background-image: linear-gradient(to right, #ff7e5f, #feb47b);
+            border-radius: 50%;
+        }
+
+        /* Deadline Form */
+        .deadline-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+        }
+
+        .deadline-form {
+            background-color: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 700px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+            width: 100%;
+        }
+
+        .form-label {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .date-input-container {
+            position: relative;
+        }
+
+        .date-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .date-input:focus {
+            outline: none;
+            border-color: #006666;
+        }
+
+        .calendar-icon {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #006666;
+            pointer-events: none;
+        }
+
+        /* Calendar Popup */
+        .calendar-popup {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 0;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            padding: 16px;
+            width: 100%;
+            max-width: 350px;
+            z-index: 10;
+            display: none;
+        }
+
+        .calendar-popup.active {
+            display: block;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .month-year {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .calendar-nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        .calendar-nav-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+        }
+
+        .calendar-nav-btn:hover {
+            color: #333;
+        }
+
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .day-name {
+            font-size: 12px;
+            color: #999;
+            text-align: center;
+        }
+
+        .calendar-dates {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+        }
+
+        .date-cell {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .date-cell:hover {
+            background-color: #f0f0f0;
+        }
+
+        .date-cell.today {
+            background-color: #f0f0f0;
+            font-weight: 600;
+        }
+
+        .date-cell.selected {
+            background-color: #006666;
+            color: white;
+        }
+
+        .date-cell.disabled {
+            color: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* Proceed Button */
+        .proceed-btn {
+            background-color: #006666;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 14px 20px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: background-color 0.2s;
+        }
+
+        .proceed-btn:hover {
+            background-color: #005555;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 20px;
+            }
+            
+            .deadline-form {
+                padding: 20px;
+            }
+            
+            .form-label {
+                font-size: 16px;
+            }
+            
+            .calendar-popup {
+                max-width: 300px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                padding: 40px;
+            }
+            
+            .header h1 {
+                font-size: 28px;
+            }
+            
+            .deadline-form {
+                padding: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Task Deadline</h1>
+            <div class="wallet-address">
+                <div class="wallet-icon"></div>
+                <span>0x051cd5...5c4a5wa12</span>
+            </div>
+        </header>
+
+        <div class="deadline-container">
+            <div class="deadline-form">
+                <div class="form-group">
+                    <label class="form-label">Set a deadline for your task</label>
+                    <div class="date-input-container">
+                        <input type="text" class="date-input" id="taskDeadline" placeholder="mm/dd/yy" readonly>
+                        <span class="calendar-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                        </span>
+                        <div class="calendar-popup" id="taskCalendar">
+                            <div class="calendar-header">
+                                <span class="month-year">December 2022</span>
+                                <div class="calendar-nav">
+                                    <button class="calendar-nav-btn prev-month">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="15 18 9 12 15 6"></polyline>
+                                        </svg>
+                                    </button>
+                                    <button class="calendar-nav-btn next-month">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="9 18 15 12 9 6"></polyline>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="calendar-days">
+                                <span class="day-name">Sun</span>
+                                <span class="day-name">Mon</span>
+                                <span class="day-name">Tue</span>
+                                <span class="day-name">Wed</span>
+                                <span class="day-name">Thu</span>
+                                <span class="day-name">Fri</span>
+                                <span class="day-name">Sat</span>
+                            </div>
+                            <div class="calendar-dates" id="calendarDates">
+                                <!-- Calendar dates will be generated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Set a deadline for volunteers sign up</label>
+                    <div class="date-input-container">
+                        <input type="text" class="date-input" id="volunteerDeadline" placeholder="mm/dd/yy" readonly>
+                        <span class="calendar-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+
+                <button class="proceed-btn">Proceed</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Calendar functionality
+            const taskDeadlineInput = document.getElementById('taskDeadline');
+            const volunteerDeadlineInput = document.getElementById('volunteerDeadline');
+            const taskCalendar = document.getElementById('taskCalendar');
+            const calendarDates = document.getElementById('calendarDates');
+            
+            // Show calendar when clicking on the input
+            taskDeadlineInput.addEventListener('click', function() {
+                taskCalendar.classList.add('active');
+                generateCalendar();
+            });
+            
+            // Hide calendar when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!taskDeadlineInput.contains(e.target) && 
+                    !taskCalendar.contains(e.target)) {
+                    taskCalendar.classList.remove('active');
+                }
+            });
+            
+            // Generate calendar dates
+            function generateCalendar() {
+                calendarDates.innerHTML = '';
+                
+                // For demo purposes, we'll generate December 2022
+                const year = 2022;
+                const month = 11; // 0-based, so 11 is December
+                
+                const firstDay = new Date(year, month, 1);
+                const lastDay = new Date(year, month + 1, 0);
+                
+                // Add empty cells for days before the first day of the month
+                for (let i = 0; i < firstDay.getDay(); i++) {
+                    const emptyCell = document.createElement('div');
+                    emptyCell.className = 'date-cell disabled';
+                    calendarDates.appendChild(emptyCell);
+                }
+                
+                // Add cells for each day of the month
+                for (let i = 1; i <= lastDay.getDate(); i++) {
+                    const dateCell = document.createElement('div');
+                    dateCell.className = 'date-cell';
+                    dateCell.textContent = i;
+                    
+                    // Highlight today (for demo, let's say today is Dec 8, 2022)
+                    if (i === 8) {
+                        dateCell.classList.add('today');
+                    }
+                    
+                    // Highlight selected date (for demo, let's say Dec 22, 2022 is selected)
+                    if (i === 22) {
+                        dateCell.classList.add('selected');
+                    }
+                    
+                    // Handle date selection
+                    dateCell.addEventListener('click', function() {
+                        // Remove selected class from all cells
+                        document.querySelectorAll('.date-cell.selected').forEach(cell => {
+                            cell.classList.remove('selected');
+                        });
+                        
+                        // Add selected class to clicked cell
+                        this.classList.add('selected');
+                        
+                        // Update input value
+                        taskDeadlineInput.value = `12/${i}/22`;
+                        
+                        // Hide calendar
+                        setTimeout(() => {
+                            taskCalendar.classList.remove('active');
+                        }, 200);
+                    });
+                    
+                    calendarDates.appendChild(dateCell);
+                }
+            }
+            
+            // Handle proceed button
+            const proceedBtn = document.querySelector('.proceed-btn');
+            proceedBtn.addEventListener('click', function() {
+                if (!taskDeadlineInput.value) {
+                    alert('Please select a task deadline');
+                    return;
+                }
+                
+                if (!volunteerDeadlineInput.value) {
+                    // For demo purposes, let's set a default value
+                    volunteerDeadlineInput.value = '12/15/22';
+                }
+                
+                // Navigate to next page
+                window.location.href = 'bounty-executor-details.html';
+            });
+            
+            // For demo purposes, let's set the volunteer deadline input to work similarly
+            volunteerDeadlineInput.addEventListener('click', function() {
+                // In a real implementation, this would show another calendar
+                // For demo, let's just set a value
+                this.value = '12/15/22';
+            });
+        });
+    </script>
+</body>
+</html>
