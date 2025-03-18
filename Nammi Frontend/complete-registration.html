@@ -4,28 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Complete - Nammi</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/registration-complete.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="app-container">
-        <div class="complete-screen">
-            <div class="success-circle">
-                <div class="checkmark-circle">
-                    <div class="checkmark"></div>
+<body class="bg-white flex justify-center items-center h-screen">
+    <div class="text-center p-6 max-w-md w-full">
+        <div class="flex justify-center items-center mb-6">
+            <div class="w-20 h-20 flex items-center justify-center rounded-full bg-green-500">
+                <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 15.172l9.192-9.193 1.414 1.414L10 18 3.707 11.707l1.414-1.414L10 15.172z"/>
+                </svg>
                 </div>
             </div>
-            
-            <div class="complete-message">
-                <h1>Registration Complete!</h1>
-                <h2>Welcome to Nammi</h2>
+                <h1 class="text-2xl font-bold text-gray-800">Registration Complete!</h1>
+                <h2 class="text-lg text-gray-600">Welcome to Nammi</h2>
             </div>
             
             <div class="redirect-message">
-                <p>You will be automatically redirected to<br>dashboard based on your selected role.</p>
+                <p class="text-gray-500 mt-4">You will be automatically redirected to<br>dashboard based on your selected role.</p>
             </div>
-        </div>
-    </div>
     <script src="js/main.js"></script>
     <script>
         // Automatically redirect after showing success message
