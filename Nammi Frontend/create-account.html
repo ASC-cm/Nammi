@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Account - Nammi</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    
+    <!-- Google OAuth -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+    <!-- Apple OAuth -->
+    <script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
+
 </head>
 <body class="bg-white flex justify-center items-center min-h-screen p-4">
     
@@ -17,11 +27,15 @@
 
         <!-- Sign Up Buttons -->
         <div class="mt-4 space-y-3">
-            <button class="w-full flex items-center justify-center bg-white border py-2 rounded-lg shadow-sm hover:bg-gray-100 transition">
-                <img src="images/google-icon.svg" alt="Google" class="w-5 h-5 mr-2">
-                <span class="text-gray-700 font-medium">Sign up with Google</span>
-            </button>
-            <button class="w-full flex items-center justify-center bg-white border py-2 rounded-lg shadow-sm hover:bg-gray-100 transition">
+            <!-- Google Sign-In -->
+            <div id="g_id_onload"
+                data-client_id="YOUR_GOOGLE_CLIENT_ID"
+                data-callback="handleGoogleCallback">
+            </div>
+            <div class="g_id_signin" data-type="standard"></div>
+
+            <!-- Apple Sign-In -->
+            <button id="apple-signin-btn" onclick="handleAppleLogin()" class="w-full flex items-center justify-center bg-white border py-2 rounded-lg shadow-sm hover:bg-gray-100 transition">
                 <img src="images/apple-icon.svg" alt="Apple" class="w-5 h-5 mr-2">
                 <span class="text-gray-700 font-medium">Sign up with Apple</span>
             </button>
@@ -56,29 +70,16 @@
             </button>
         </form>
 
-        <!-- Already have  Account -->
+        <!-- Already have an Account -->
         <p class="text-center text-gray-600 mt-4">
             Already have an account? 
-            <a href="welcome-screen.html" class="text-green-500 hover:underline">Log in</a>
+            <a href="login.html" class="text-green-500 hover:underline">Log in</a>
         </p>
     </div>
 
-   
-    <script src="js/main.js"></script>
-    <script>
-        document.getElementById('signupForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            window.location.href = 'select-role.html';
-        });
-        
-        document.querySelector('.toggle-password').addEventListener('click', function() {
-            const passwordInput = document.getElementById('password');
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-            } else {
-                passwordInput.type = 'password';
-            }
-        });
-    </script>
+    <!-- Link to External JavaScript -->
+    <script src="js/api.js"></script>
+    <script src="js/social-auth.js"></script>
+
 </body>
 </html>

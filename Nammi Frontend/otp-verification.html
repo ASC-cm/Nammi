@@ -6,14 +6,14 @@
     <title>OTP Verification - Nammi</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/otp-verification.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 <body>
     <div class="app-container">
         <header class="header">
             <button class="back-btn" onclick="history.back()">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M15 18L9 12L15 6" stroke="currentColor" 
-                          stroke-width="2" stroke-linecap="round"/>
+                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
             </button>
             
@@ -43,21 +43,18 @@
             </p>
         </main>
 
-        <!-- Success Modal -->
         <div class="modal" id="successModal">
             <div class="modal-content">
                 <button class="close-btn">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" 
-                              stroke-width="2" stroke-linecap="round"/>
+                        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                     </svg>
                 </button>
                 
                 <div class="success-icon">
                     <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
                         <circle cx="24" cy="24" r="24" fill="#008000"/>
-                        <path d="M14 24L20 30L34 16" stroke="white" 
-                              stroke-width="3" stroke-linecap="round"/>
+                        <path d="M14 24L20 30L34 16" stroke="white" stroke-width="3" stroke-linecap="round"/>
                     </svg>
                 </div>
                 
@@ -67,6 +64,9 @@
             </div>
         </div>
     </div>
-    <script src="js/otp-verification.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="js/otp-verification.js"></script> <!-- External OTP script -->
 </body>
 </html>
