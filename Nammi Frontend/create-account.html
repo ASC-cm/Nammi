@@ -4,63 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Account - Nammi</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/account.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="app-container">
-        <div class="account-screen">
-            <div class="background-illustration"></div>
-            <div class="header">
-                <h1>Create an Account</h1>
+<body class="bg-white flex justify-center items-center min-h-screen p-4">
+    
+    <div class="w-full max-w-md bg-gray-100 shadow-lg rounded-lg p-6">
+        <!-- Header -->
+        <div class="text-center">
+            <h1 class="text-2xl font-bold text-gray-900">Create an Account</h1>
+            <p class="text-gray-600 mt-1">Get started with Nammi today</p>
+        </div>
+
+        <!-- Sign Up Buttons -->
+        <div class="mt-4 space-y-3">
+            <button class="w-full flex items-center justify-center bg-white border py-2 rounded-lg shadow-sm hover:bg-gray-100 transition">
+                <img src="images/google-icon.svg" alt="Google" class="w-5 h-5 mr-2">
+                <span class="text-gray-700 font-medium">Sign up with Google</span>
+            </button>
+            <button class="w-full flex items-center justify-center bg-white border py-2 rounded-lg shadow-sm hover:bg-gray-100 transition">
+                <img src="images/apple-icon.svg" alt="Apple" class="w-5 h-5 mr-2">
+                <span class="text-gray-700 font-medium">Sign up with Apple</span>
+            </button>
+        </div>
+
+        <!-- Divide -->
+        <div class="flex items-center my-4">
+            <div class="flex-grow border-t border-gray-300"></div>
+            <span class="px-2 text-gray-500 text-sm">OR</span>
+            <div class="flex-grow border-t border-gray-300"></div>
+        </div>
+
+        <!-- Signup Form -->
+        <form id="signupForm" class="space-y-4">
+            <div>
+                <label for="email" class="text-gray-700 font-medium">Email</label>
+                <input type="email" id="email" class="w-full mt-1 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-400" placeholder="johndoe@mail.com" required>
             </div>
-            
-            <div class="account-form-container">
-                <div class="account-form">
-                    <h2>Create account</h2>
-                    <p class="subtitle">Get started with Nammi today</p>
-                    
-                    <div class="social-buttons">
-                        <button class="google-btn">
-                            <img src="images/google-icon.svg" alt="Google">
-                            <span>Sign up with Google</span>
-                        </button>
-                        <button class="apple-btn">
-                            <img src="images/apple-icon.svg" alt="Apple">
-                            <span>Sign up with Apple</span>
-                        </button>
-                    </div>
-                    
-                    <div class="divider">
-                        <span>OR</span>
-                    </div>
-                    
-                    <form id="signupForm">
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" placeholder="johndoe@mail.com" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <div class="password-input">
-                                <input type="password" id="password" placeholder="••••••••" required>
-                                <button type="button" class="toggle-password">
-                                    <img src="images/eye-icon.svg" alt="Show password">
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <button type="submit" class="submit-btn">Log In</button>
-                    </form>
-                    
-                    <p class="account-toggle">
-                        Don't have an account? <a href="welcome-screen.html">Create one</a>
-                    </p>
+
+            <div>
+                <label for="password" class="text-gray-700 font-medium">Password</label>
+                <div class="relative">
+                    <input type="password" id="password" class="w-full mt-1 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-400" placeholder="••••••••" required>
+                    <button type="button" class="absolute right-3 top-3 toggle-password">
+                        <img src="images/eye-icon.svg" alt="Show password" class="w-5 h-5">
+                    </button>
                 </div>
             </div>
-        </div>
+
+            <button type="submit" class="w-full py-3 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 transition">
+                Sign Up
+            </button>
+        </form>
+
+        <!-- Already have  Account -->
+        <p class="text-center text-gray-600 mt-4">
+            Already have an account? 
+            <a href="welcome-screen.html" class="text-green-500 hover:underline">Log in</a>
+        </p>
     </div>
+
+   
     <script src="js/main.js"></script>
     <script>
         document.getElementById('signupForm').addEventListener('submit', (e) => {
