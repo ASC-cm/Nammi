@@ -6,26 +6,35 @@
     <title>Registration Complete - Nammi</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-white flex justify-center items-center h-screen">
-    <div class="text-center p-6 max-w-md w-full">
-            <!-- Check mark -->
-        <div class="flex justify-center items-center mb-6">
-            <div class="w-20 h-20 flex items-center justify-center rounded-full bg-green-500">
-                <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+<body class="h-screen flex items-end bg-black">
+    
+    <div class="w-full bg-[#065A4D] text-white rounded-t-3xl p-6 text-center relative h-3/4 flex flex-col justify-center items-center">
+       <!--    Success  icon -->
+        <div class="relative w-40 h-40 flex items-center justify-center">
+             <div class="absolute inset-0 rounded-full border-[8px] border-[#0ABF66] flex items-center justify-center">
+                 <div class="w-24 h-24 bg-[#065A4D] flex items-center justify-center rounded-full">
+                   <svg class="w-16 h-16 text-[#0ABF66]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                     <path fill-rule="evenodd" d="M10 15.172l9.192-9.193 1.414 1.414L10 18 3.707 11.707l1.414-1.414L10 15.172z"/>
                 </svg>
                 </div>
             </div>
-                <!-- success-->
-                <h1 class="text-2xl font-bold text-gray-800">Registration Complete!</h1>
-                <h2 class="text-lg text-gray-600">Welcome to Nammi</h2>
+        </div>
+                <!-- success Message-->
+                <h1 class="text-2xl font-semibold mt-6 ">Registration Complete!</h1>
+                <p class="text-lg ">Welcome to Nammi</p>
+        
               <!--redirecting message  -->
-              <p class="text-gray-500 mt-4">You will be automatically redirected to<br>dashboard based on your selected role.</p>
-             <button onclick="redirectNow()" class="mt-6 px-6 py-3 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 transition duration-300">
+              <p class="text-sm text-gray-200 mt-4 text-center px-6">
+                  You will be automatically redirected to
+                  <br>
+                  dashboard based on your selected role.
+              </p>
+
+        <!-- Manual Redirect Button -->
+        <button id="redirectBtn" class="mt-6 px-6 py-3 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 transition duration-300">
             Go to Dashboard
         </button>
-            </div>
-    
+           
     <script src="js/main.js"></script>
     <script>
         // Automatically redirect after showing success message
@@ -34,5 +43,7 @@
             window.location.href = 'index.html';
         }, 3000);
     </script>
+ </div>
+    
 </body>
 </html>
